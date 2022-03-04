@@ -13,9 +13,8 @@
         Hello World
     </h1>
     <div id="app">
-        {{greeting}}
-        <p>Is it true? {{myBool ? 'yes' : 'no'}}</p>
-        <p>2 + 2 = {{twoPlusTwo()}}</p>
+        {{welcome()}}
+
     </div>
 </body>
 
@@ -28,6 +27,11 @@
                 twoPlusTwo: ()=>{
                     return 2+2
                 }
+            }
+        },
+        methods:{
+            welcome(){
+                return this.greeting
             }
         }
     }
