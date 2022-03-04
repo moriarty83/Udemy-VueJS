@@ -14,7 +14,10 @@
     </h1>
     <div id="app">
         {{welcome()}}
-
+        <img v-bind:src="src" v-bind:alt="alt">
+        <a v-bind:href="link">Bender</a>
+        <p v-text="myText"></p>
+        <p v-html="myHtml"></p>
     </div>
 </body>
 
@@ -26,7 +29,12 @@
                 myBool: false,
                 twoPlusTwo: ()=>{
                     return 2+2
-                }
+                },
+                src:"https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png",
+                alt:"bender",
+                link: "https://en.wikipedia.org/wiki/Bender_(Futurama)",
+                myText: "Bite my shiney",
+                myHtml: "<strong>Metal Ass</strong>"
             }
         },
         methods:{
