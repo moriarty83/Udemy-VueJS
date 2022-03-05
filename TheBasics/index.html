@@ -13,7 +13,11 @@
         Hello World
     </h1>
     <div id="app">
+        <p v-once>Original name: {{ name }}</p>
         {{welcome()}}
+        {{ name }}
+        {{ updateName()}}
+        <br>
         <img v-bind:src="src" v-bind:alt="alt">
         <a v-bind:href="link">Bender</a>
         <p v-text="myText"></p>
@@ -44,7 +48,8 @@
     const App = {
         data(){
             return{
-                greeting: "Hello Vue",
+                name: "Chris",
+                greeting: "Hello ",
                 myBool: false,
                 twoPlusTwo: ()=>{
                     return 2+2
@@ -83,6 +88,11 @@
                 else {
                     return false
                 }
+            },
+            updateName(){
+                setTimeout(()=>{
+                    this.name = "Steve"
+                }, 2000)
             }
         }
     }
