@@ -22,7 +22,21 @@
         <p >{{checkUser()}}</p>
 
         <p v-show="checkAge()">Bite my Shiney Metal Ass</p>
+        <p v-for="name,i in names">
+            {{name}} : {{ i }}
+        </p>
 
+        <ol>
+            <li v-for="movie in movies">
+                {{movie.name}} - {{ movie.director }}
+            </li>
+        </ol>
+
+        <ul>
+            <li v-for="key,value,index in city">
+                {{index}}:{{key}}:{{value}}
+            </li>
+        </ul>
     </div>
 </body>
 
@@ -42,7 +56,9 @@
                 link: "https://en.wikipedia.org/wiki/Bender_(Futurama)",
                 myText: "Bite my shiney",
                 myHtml: "<strong>Metal Ass</strong>",
-
+                names: ["tom", "dick", "harry"],
+                movies: [{name: "Saving Pvt. Ryan", director: "Speilberg"}, {name:"The Rock", director:"brukheimer"}, {name:"Pulp Fiction", director:"Tarintino"}],
+                city: {name: "Boston", state:"MA", population: 5000000}
             }
         },
         methods:{
