@@ -41,6 +41,16 @@
                 {{index}}:{{key}}:{{value}}
             </li>
         </ul>
+        <div class="box" v-on:mousemove="getCoord">
+            hover me
+            <p>x: {{x}}</p>
+            <p>y: {{y}}</p>
+        </div>
+
+        <div v-on:click="updateCount">
+            Click Me
+        </div>
+        {{count}}
     </div>
 </body>
 
@@ -63,7 +73,10 @@
                 myHtml: "<strong>Metal Ass</strong>",
                 names: ["tom", "dick", "harry"],
                 movies: [{name: "Saving Pvt. Ryan", director: "Speilberg"}, {name:"The Rock", director:"brukheimer"}, {name:"Pulp Fiction", director:"Tarintino"}],
-                city: {name: "Boston", state:"MA", population: 5000000}
+                city: {name: "Boston", state:"MA", population: 5000000},
+                count: 0,
+                x: 0,
+                y: 0,
             }
         },
         methods:{
@@ -93,6 +106,13 @@
                 setTimeout(()=>{
                     this.name = "Steve"
                 }, 2000)
+            },
+            updateCount(){
+                this.count += 1
+            },
+            getCoord(event){
+                this.x = event.clientX;
+                this.y = event.clientY;
             }
         }
     }
