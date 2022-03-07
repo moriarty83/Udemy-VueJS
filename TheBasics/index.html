@@ -13,6 +13,17 @@
         Hello World
     </h1>
     <div id="app">
+
+        <form v-on:submit.prevent="formHandler">
+            <label for="name"></label>
+            <input v-model.trim.lazy="formData.name"  type="text" name="name" id="">
+            <label for="age"></label>
+            <input v-model.number="formData.age" type="text" name="age" id="" />
+            <input type="checkbox" id="check" v-model="formData.checked" /> 
+            <button  type="submit">Fire formHanlder</button>
+
+        </form>
+
         <input type="text" v-on:keyup.G.space.enter="showEvent" placeholder="Show Event"/>
 
 
@@ -88,6 +99,11 @@
                 x: 0,
                 y: 0,
                 nameInput: "",
+                formData: {
+                    name: "",
+                    age: 0,
+                    checked: true,
+                },
             }
         },
         methods:{
@@ -135,6 +151,9 @@
             showEvent(event){
                 console.log(event.target.value)
             },
+            formHandler(){
+                console.log(this.formData)
+            }
         }
     }
 
