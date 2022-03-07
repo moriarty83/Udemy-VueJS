@@ -18,6 +18,12 @@
         {{ name }}
         {{ updateName()}}
         <br>
+        <form v-on:submit.prevent="handleSubmit">
+            <input v-model="nameInput" />
+            <p>{{ nameInput }}</p>
+            <button type="submit">Submit</button>
+        </form>
+        <button v-on:click.right="changeName('Ron', $event)">Change Name</button>
         <img v-bind:src="src" v-bind:alt="alt">
         <a v-bind:href="link">Bender</a>
         <p v-text="myText"></p>
@@ -77,6 +83,7 @@
                 count: 0,
                 x: 0,
                 y: 0,
+                nameInput: "",
             }
         },
         methods:{
@@ -113,7 +120,14 @@
             getCoord(event){
                 this.x = event.clientX;
                 this.y = event.clientY;
-            }
+            },
+            changeName(newName, event){
+                this.name = newName;
+                console.log(event)
+            },
+            handleSubmit(event){
+                this.name = this.nameInput
+            },
         }
     }
 
