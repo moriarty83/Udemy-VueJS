@@ -16,7 +16,18 @@
         Hello World
     </h1>
     <div id="app">
+        <h1>Computed Properties</h1>
+        
+        <input type="text" v-model="user">
+        <button v-on:click="toggleActive">Other Action</button>
+        <div>
+            Name: {{ compMessage }}
+        </div>
+        <div>
+            Active: {{ isActive() }}
+        </div>
 
+        <h1>Styles</h1>
         <div class="element" 
             v-bind:class="{red:redColor}"
             v-on:click="changeRed"
@@ -28,6 +39,9 @@
             v-bind:style="inlineStyle"
             >Inline Style</div>
 
+            <h1>
+                V-Model
+            </h1>
         <form v-on:submit.prevent="formHandler">
             <label for="name"></label>
             <input v-model.trim.lazy="formData.name"  type="text" name="name" id="">
@@ -38,6 +52,7 @@
 
         </form>
 
+        <h1>Keyboard events</h1>
         <input type="text" v-on:keyup.G.space.enter="showEvent" placeholder="Show Event"/>
 
 
@@ -59,11 +74,15 @@
         <p v-else>Hat</p>
         <p >{{checkUser()}}</p>
 
+        <h1>Methods</h1>
         <p v-show="checkAge()">Bite my Shiney Metal Ass</p>
+        
+        <h1>Iterations</h1>
         <p v-for="name,i in names">
             {{name}} : {{ i }}
         </p>
 
+        
         <ol>
             <li v-for="movie in movies">
                 {{movie.name}} - {{ movie.director }}
@@ -133,7 +152,16 @@
                 inlineStyle: {
                     fontSize:'50px',
                     border:'5px solid green'
-                }
+                },
+                user: '',
+                active: ''
+            }
+        },
+        computed:{
+            compMessage(){
+                console.log("Computed triggered")
+                // ONLY RETURNS WHEN THE PROPERTY BEING USED CHANGES
+                return this.user === "Bob" ? "Welcome" : "Only 'Bob' is allowed"
             }
         },
         methods:{
@@ -186,6 +214,17 @@
             },
             changeRed(){
                 this.redColor = !this.redColor
+            },
+            message(){
+                console.log("Message triggered")
+                return this.user === "Bob" ? "Welcome" : "Only 'Bob' is allowed"
+            },
+            isActive(){
+                console.log("Active triggered")
+                return this.active ? "Active" : "Inactive"
+            },
+            toggleActive(){
+                this.active = !this.active
             }
         }
     }
