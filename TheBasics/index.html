@@ -9,10 +9,24 @@
     <title>Document</title>
 </head>
 <body>
+
+
+
     <h1>
         Hello World
     </h1>
     <div id="app">
+
+        <div class="element" 
+            v-bind:class="{red:redColor}"
+            v-on:click="changeRed"
+            
+            >
+            Styles
+            </div>
+            <div
+            v-bind:style="inlineStyle"
+            >Inline Style</div>
 
         <form v-on:submit.prevent="formHandler">
             <label for="name"></label>
@@ -75,6 +89,17 @@
 
 </body>
 
+<style>
+    .element{
+        background-color: black;
+        color: white;
+    }
+    .red {
+        background-color: red;
+        color: black;
+    }
+</style>
+
 <script>
     const App = {
         data(){
@@ -104,6 +129,11 @@
                     age: 0,
                     checked: true,
                 },
+                redColor: false,
+                inlineStyle: {
+                    fontSize:'50px',
+                    border:'5px solid green'
+                }
             }
         },
         methods:{
@@ -153,6 +183,9 @@
             },
             formHandler(){
                 console.log(this.formData)
+            },
+            changeRed(){
+                this.redColor = !this.redColor
             }
         }
     }
