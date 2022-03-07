@@ -13,6 +13,9 @@
         Hello World
     </h1>
     <div id="app">
+        <input type="text" v-on:keyup.G.space.enter="showEvent" placeholder="Show Event"/>
+
+
         <p v-once>Original name: {{ name }}</p>
         {{welcome()}}
         {{ name }}
@@ -57,7 +60,8 @@
             Click Me
         </div>
         {{count}}
-    </div>
+        </div>
+
 </body>
 
 <script>
@@ -127,6 +131,9 @@
             },
             handleSubmit(event){
                 this.name = this.nameInput
+            },
+            showEvent(event){
+                console.log(event.target.value)
             },
         }
     }
