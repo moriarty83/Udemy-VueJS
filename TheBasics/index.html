@@ -9,13 +9,19 @@
     <title>Document</title>
 </head>
 <body>
+    
+    <div id="comp">
+        <h1>Components</h1>
+        <user-name></user-name>
+    </div>
 
     <h1>Multiple Instances</h1>
     <div id="inst1">
         {{ value }}
         <h5 @click="hello">Hello</h5>
         <button @click="changecount">Change Count</button>
-    </div>
+
+            </div>
     <div id="inst2">
         {{ value }}
         <h5>Count: {{ count }}</h5>
@@ -23,6 +29,9 @@
     <h1>
         Hello World
     </h1>
+
+
+
     <div id="app">
 
         <h1>Watchers</h1>
@@ -263,9 +272,24 @@
                 console.log("changecount")
                 inst2.count += 1;
             }
-        }
+        },
+        template:'<div>{{ value }}</div>'
         
     }).mount('#inst1')
+
+
+    const comp = Vue.createApp({})
+    
+    comp.component('user-name', {
+        data(){
+            return{
+                name: "bobby"
+            }
+        },
+        template:'<div>{{ name }}</div>'
+    });
+
+    comp.mount('#comp')
 
     const inst2 = Vue.createApp({
         data(){
@@ -277,6 +301,7 @@
     }).mount('#inst2')
 
     Vue.createApp(App).mount('#app')
+
 </script>
 
 </html>
