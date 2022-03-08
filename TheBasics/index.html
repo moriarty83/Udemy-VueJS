@@ -16,6 +16,10 @@
         Hello World
     </h1>
     <div id="app">
+
+        <h1>Watchers</h1>
+
+
         <h1>Computed Properties</h1>
         
         <input type="text" v-model="user">
@@ -225,6 +229,11 @@
             },
             toggleActive(){
                 this.active = !this.active
+            }
+        },
+        watch: {
+            active(value){
+                console.log(value)
             }
         }
     }
