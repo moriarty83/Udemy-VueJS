@@ -10,8 +10,16 @@
 </head>
 <body>
 
-
-
+    <h1>Multiple Instances</h1>
+    <div id="inst1">
+        {{ value }}
+        <h5 @click="hello">Hello</h5>
+        <button @click="changecount">Change Count</button>
+    </div>
+    <div id="inst2">
+        {{ value }}
+        <h5>Count: {{ count }}</h5>
+    </div>
     <h1>
         Hello World
     </h1>
@@ -232,11 +240,41 @@
             }
         },
         watch: {
+            // Watchers not fired on load only when property changes
             active(value){
                 console.log(value)
             }
         }
     }
+    
+
+    const inst1 = Vue.createApp({
+        data(){
+            return{
+            value: "Instance 1"
+        }
+
+        },
+        methods:{
+            hello(){
+                console.log("Hello")
+            },
+            changecount(){
+                console.log("changecount")
+                inst2.count += 1;
+            }
+        }
+        
+    }).mount('#inst1')
+
+    const inst2 = Vue.createApp({
+        data(){
+            return{
+                value: "Instance 2",
+                count: 0
+            }
+        }
+    }).mount('#inst2')
 
     Vue.createApp(App).mount('#app')
 </script>
