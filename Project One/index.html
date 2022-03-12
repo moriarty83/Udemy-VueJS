@@ -31,11 +31,30 @@
             <input type="text" v-model.trim="inputName">
             <button @click="addNameToList">Add</button>
          </div>
+         <div class="error_label" v-if="showError">
+            {{ error }}
+         </div>
+         <div class="list_of_names">
+            <div
+            v-for="(name, index) in names"
+            :key ="name"
+            @click="removeName(index)">{{name}}</div>
+         </div>
+
+         <div
+            v-if="isReady"
+         >
+            <div class="action_button" @click="showResults">Check the loser</div>
+         </div>
+
+         <div class="result" id="results" v-if="!state">
+            The loser is
+         </div>
        </div>
 
-       <div class="result" id="results" v-if="!state">
-          result
-       </div>
+
+
+
        
     </div>
 
