@@ -6,6 +6,7 @@ const app = Vue.createApp({
             names: [],
             error: "error text",
             showError: false,
+            result: "",
         }
     },
 
@@ -47,9 +48,26 @@ const app = Vue.createApp({
         removeName(index){
             this.names.splice(index, 1)
         },
+        getRandomName(){
+            return this.names[Math.floor(Math.random() * this.names.length)]
+        },
+
+        generateResult(){
+            let rand = this.getRandomName();
+            this.result = rand;
+        },
         showResults(){
+            this.generateResult()
             this.state = false;
+        },
+        getNewResult(){
+            this.generateResult()
+        },
+        startOver(){
+            this.names = [];
+            this.state = true;
         }
+
     }
 }).mount('#app')
 
