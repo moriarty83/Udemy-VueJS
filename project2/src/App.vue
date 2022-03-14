@@ -1,24 +1,33 @@
 <template>
     <div>
-    <app-header></app-header>
-    <div class="container">
+        <app-header></app-header>
+        <div class="container">
+            <comp-user-profile :aka="name" :age="age"></comp-user-profile>
+            <button @click="updateAlias">Update alias</button>
 
-    <h2>Hello {{name}}</h2>
-    </div>
-    <comp-footer></comp-footer>
+        </div>
+        <comp-footer></comp-footer>
     </div>
 </template>
     
 <script>
-    import Footer from './components/Footer.vue'
+    import Footer from './components/Footer.vue';
+    import compUserProfile from './components/User/profile'
     export default{
         data(){
             return{
                 name: 'Chris',
+                age: 38,
             }
         },
         components:{
             'comp-footer': Footer,
+            compUserProfile,
+        },
+        methods:{
+            updateAlias(){
+                this.name = "Roy"
+            }
         }
     }
 
@@ -33,5 +42,6 @@
         box-sizing: border-box;
         padding: 20px;
     }
+
 </style>
 
