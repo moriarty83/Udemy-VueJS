@@ -4,7 +4,8 @@
         <div class="container">
             <comp-user-profile 
                 :lastName="lastName" 
-                :aka="name" :age="age" 
+                :aka="name" 
+                :age="age" 
                 :parents="parents"
                 @update-lastname="lastName = $event"
                 @say-hello="sayHello"
@@ -21,6 +22,7 @@
     import Footer from './components/Footer.vue';
     import compUserProfile from './components/User/profile'
     export default{
+        emits:['say-hello'],
         data(){
             return{
                 name: 'Chris',

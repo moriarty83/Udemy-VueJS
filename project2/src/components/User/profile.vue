@@ -23,10 +23,32 @@
 
 export default {
     name: "comp-profile",
+    emits:{
+        'update-lastname':function(lastname){
+            if(lastname === "Michaelsonnn"){
+                return true
+            }
+            else{
+                return false
+            }
+        }
+    },
     props:{
-        aka: String,
-        lastName: String,
-        age: Number,
+        aka: {type: String,
+            required: true,
+            default: "Default"
+        },
+        lastName: {type: String,
+            // validator(value){
+            //     if(value ==='Jones'){
+            //         return true
+            //     }
+            //     else{
+            //         return false
+            //     }
+            // }
+        },
+        age: [Number, String],
         parents: Object,
         updateAge: Function
     },
