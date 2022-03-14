@@ -1,7 +1,10 @@
 <template>
     <div>
     <app-header></app-header>
+    <div class="container">
+
     <h2>Hello {{name}}</h2>
+    </div>
     <comp-footer></comp-footer>
     </div>
 </template>
@@ -22,7 +25,13 @@
 </script>
 
 <style>
-    h1 {
-        color: red;
+    body {
+        font-family: "Roboto";
+    }
+    .container{
+        min-height: 84vh;
+        box-sizing: border-box;
+        padding: 20px;
     }
 </style>
+
