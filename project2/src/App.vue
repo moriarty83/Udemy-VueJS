@@ -2,7 +2,14 @@
     <div>
         <app-header></app-header>
         <div class="container">
-            <comp-user-profile :aka="name" :age="age"></comp-user-profile>
+            <comp-user-profile 
+                :lastName="lastName" 
+                :aka="name" :age="age" 
+                :parents="parents"
+                @update-lastname="lastName = $event"
+                @say-hello="sayHello"
+                :updateAge="updateAge"
+                ></comp-user-profile>
             <button @click="updateAlias">Update alias</button>
 
         </div>
@@ -17,7 +24,12 @@
         data(){
             return{
                 name: 'Chris',
+                lastName: 'Jones',
                 age: 38,
+                parents: {
+                    mom: "martha",
+                    dad: "robert"
+                }
             }
         },
         components:{
@@ -27,7 +39,13 @@
         methods:{
             updateAlias(){
                 this.name = "Roy"
-            }
+            },
+            sayHello(){
+            alert("hello")
+            },
+            updateAge(value){
+                this.age = value
+            },
         }
     }
 
