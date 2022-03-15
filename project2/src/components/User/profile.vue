@@ -39,14 +39,14 @@ export default {
             default: "Default"
         },
         lastName: {type: String,
-            // validator(value){
-            //     if(value ==='Jones'){
-            //         return true
-            //     }
-            //     else{
-            //         return false
-            //     }
-            // }
+            validator(value){
+                if(value ==='Jones'){
+                    return true
+                }
+                else{
+                    return false
+                }
+            }
         },
         age: [Number, String],
         parents: Object,
