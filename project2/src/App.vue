@@ -1,44 +1,30 @@
 <template>
-<div>
-    <app-header></app-header>
-    <div class="container">
-        <comp-cars></comp-cars>
+    <div>
+    <life-index v-if="showIt"></life-index>
     </div>
-</div>
-
-    
 </template>
 
 <script>
-import compCars from './components/Cars'
-
+import lifeIndex from './components/Life/lifeIndex'
 export default {
+    data() {
+        return{
+            showIt: true,
+        }
+    },
     components:{
-        compCars
+        lifeIndex,
     },
-
-    data(){
-        return{
-                    cars:[
-                {make: "Saab", model: 900},
-                {make: "Subaru", model: "Crosstrek"}
-            ],
-
-        }
+    mounted() {
+        setTimeout(()=>{
+            this.showIt = false;
+        }, 3000)
     },
-    provide(){
-        return{
-            cars: this.cars,
-            changeCar: this.changeCar,
-        }
-
-    }
-    ,
-
-    methods:{
-        changeCar(){
-            this.cars[0].make = "Ford"
-        }
+    beforeUnmount() {
+        console.log("before destroy")
+    },
+    unmounted() {
+        console.log("Destroyed")
     },
 }
 </script>
