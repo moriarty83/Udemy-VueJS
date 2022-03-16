@@ -4,7 +4,10 @@
         <div class="container">
             <button @click="this.activeComp = 'player-mike'">Mike</button>
             <button @click="this.activeComp = 'player-sally'">Sally</button>
-            <component :is="activeComp"></component>
+            
+            <keep-alive include="player-sally">
+                <component :is="activeComp"></component>
+            </keep-alive>
             <!-- <player-mike v-if="activeComp === 'comp-mike'"></player-mike>
             <player-sally v-if="activeComp === 'comp-sally'"></player-sally> -->
         </div>
