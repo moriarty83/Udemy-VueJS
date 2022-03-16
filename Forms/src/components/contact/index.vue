@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit="checkForm">
     <div class="row">
       <div class="col-xl-12">
         <h1>Contact us</h1>
@@ -80,22 +80,19 @@
 
         <div class="form-group">
           <label for="country">Country</label>
-          <select class="form-control" id="country">
-            <option>
-              Francisland
+          <select class="form-control" id="country" v-model="formData.country">
+            <option v-for="(country, index) in countries" :key="index+country" >
+              {{country}}
             </option>
           </select>
         </div>
-        <button 
-          class="btn btn-primary"
-          @click.prevent="submitForm"
-        >
-          Submit
-        </button>
+        <input type="submit" value="Submit" class="btn btn-primary"/>
        
       </div>
     </div>
+    <p v-if="errors.length">{{this.errors}}</p>
   </form>
+  
 </template>
 
 <script>
@@ -112,13 +109,35 @@ export default {
       newsLetter: false,
       promotions: false,
       species: 'alien',
+      country: 'India',
       },
+      countries:["US", "India", "Brazil", "Russia"],
+      errors:[],
     }
     
   },
   methods:{
     submitForm(){
       console.log(JSON.stringify(this.formData))
+    },
+    checkForm(e){
+      e.preventDefault();
+      this.errors = [];
+
+      if(!this.formData.name){
+        this.errors.push("Name is Required")
+
+      }
+      if(this.formData.species !== 'Alien'){
+        this.errors.push("Humans cannot submit this form")
+      }
+
+      if(!this.errors.length){
+        this.submitForm()
+      }
+      else{
+        alert(this.errors)
+      }
     }
   }
 }
