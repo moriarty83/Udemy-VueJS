@@ -1,34 +1,31 @@
 <template>
     <div>
-    <life-index v-if="showIt"></life-index>
+        <app-header></app-header>
+        <div class="container">
+            <button @click="this.activeComp = 'player-mike'">Mike</button>
+            <button @click="this.activeComp = 'player-sally'">Sally</button>
+            <component :is="activeComp"></component>
+            <!-- <player-mike v-if="activeComp === 'comp-mike'"></player-mike>
+            <player-sally v-if="activeComp === 'comp-sally'"></player-sally> -->
+        </div>
+        <app-footer></app-footer>
     </div>
 </template>
 
 <script>
-import lifeIndex from './components/Life/lifeIndex'
+    import playerMike from './components/Players/playerMike.vue'
+    import playerSally from './components/Players/playerSally.vue'
+
 export default {
+    components:{
+        playerMike,
+        playerSally,
+    },
     data() {
         return{
-            showIt: true,
+        activeComp:'player-mike',
         }
-    },
-    components:{
-        lifeIndex,
-    },
-    mounted() {
-        setTimeout(()=>{
-            this.showIt = false;
-        }, 3000)
-    },
-    beforeUnmount() {
-        console.log("before destroy")
-    },
-    unmounted() {
-        console.log("Destroyed")
     },
 }
 </script>
 
-<style>
-
-</style>
