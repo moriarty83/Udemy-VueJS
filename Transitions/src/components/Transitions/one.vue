@@ -1,4 +1,5 @@
 <template>
+    Transitions 1
     <button class="btn btn-primary" @click="display = !display">Display</button>
 
     <transition>
