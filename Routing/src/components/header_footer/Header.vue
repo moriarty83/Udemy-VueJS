@@ -15,7 +15,12 @@
           <!-- <a href="#" class="nav-link">Articles</a> -->
         </li>
         <li class="nav-item">
-          <router-link to="/contact" class="nav-link">Contact</router-link>
+          <router-link :to="{
+            name: 'reachme',
+            params:{
+              from: 'navbar'
+            }
+            }" class="nav-link">Contact</router-link>
           <!-- <a href="#" class="nav-link">Contact</a> -->
         </li>
       </ul>

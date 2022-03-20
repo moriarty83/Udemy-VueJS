@@ -7,14 +7,30 @@ import Footer from './components/header_footer/Footer';
 import Articles from './components/Articles'
 import Contact from './components/Contact'
 import Home from './components'
+import Article from './components/Articles/article'
+import NotFound from './components/404.vue'
+import Notify from './components/notify.vue'
+
 
 const app =  createApp(App);
 const routes = createRouter({
     history: createWebHistory(),
     routes:[
-        {path: '/articles', component: Articles},
-        {path: '/contact', component: Contact},
-        {path: '/', component: Home}
+        {path: '/articles', component: Articles, 
+        // children:[
+        //     {path: ':id', component: Article, props:{crazy: 'horse'}},
+        // ]
+    },
+        {path: '/articles/:id', component: Article, props:{crazy: 'horse'}},
+        {path: '/contact', components: {
+            default: Contact,
+            notify: Notify, 
+            }, name:'reachme'},
+        //{path: '/contact', redirect: '/'},
+
+        {path: '/', component: Home},
+        {path: '/:notFound(.*)', component: NotFound}
+        
     ],
     linkActiveClass:'active'
 })

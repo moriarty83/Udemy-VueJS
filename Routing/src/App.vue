@@ -4,6 +4,9 @@
             <router-view>
               
             </router-view>
+            <hr>
+            <router-view name="notify">
+            </router-view>
         </div>
     <app-footer></app-footer>
 </template>
