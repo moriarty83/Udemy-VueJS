@@ -40,6 +40,12 @@
 import axios from 'axios'
 export default {
     props: ['crazy'],
+    beforeRouteEnter () {
+      (console.log('hello'))
+    },
+    beforeRouteUpdated(){
+      console.log('Update')
+    },
 
     data() {
         return {

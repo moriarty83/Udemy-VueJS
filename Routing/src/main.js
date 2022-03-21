@@ -13,16 +13,28 @@ import Notify from './components/notify.vue'
 
 
 const app =  createApp(App);
+
+const checkAuth = ()=>{
+    const isAuth = true;
+    if(!isAuth) return '/contact'
+}
+
+const isAdmin = ()=>{
+    const isAdmin = true;
+    if(!isAdmin) return '/contact'
+}
+
 const routes = createRouter({
     history: createWebHistory(),
     routes:[
-        {path: '/articles', component: Articles, 
+        {path: '/articles', component: Articles,
+            beforeEnter:[checkAuth, isAdmin]
         // children:[
         //     {path: ':id', component: Article, props:{crazy: 'horse'}},
         // ]
     },
         {path: '/articles/:id', component: Article, props:{crazy: 'horse'}},
-        {path: '/contact', components: {
+        {path: '/contact', meta:{ checkAuth: true}, components: {
             default: Contact,
             notify: Notify, 
             }, name:'reachme'},
@@ -33,7 +45,32 @@ const routes = createRouter({
         
     ],
     linkActiveClass:'active'
+});
+
+routes.beforeEach((to, from, next)=>{
+    if(to.meta.checkAuth){
+        // Do auth check
+    }
+    console.log(from)
+    return next()
 })
+
+// routes.beforeEach((to, from, next)=>{
+//     // Addtional arguments include from & next.
+//     console.log("Before Each running")
+//     console.log(from)
+//     // Do checking/authenticating etc.
+//     let isAuth = false;
+//     if(to.path === '/'){
+//         next()
+//     }
+//     else {
+//         if(to.path !== '/contact' && !isAuth) return next({
+//         path: '/contact'
+//     })
+//     return next()}
+// })
+
 app.component('app-header',Header);
 app.component('app-footer',Footer);
 
