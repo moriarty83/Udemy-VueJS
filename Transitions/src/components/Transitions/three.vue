@@ -23,7 +23,7 @@
         </div>
         <div>
             <ul class="pl-0">
-                <transition-group name="list">
+                <transition-group name="list" appear="true">
                 
                     <li class="list-group-item"
                     v-for="(item, index) in list"
