@@ -12,10 +12,10 @@
         <li class="nav-item">
            <router-link to="/admin" class="nav-link">Admin</router-link>
         </li>
-        <li class="nav-item" v-if="this.$store.state.auth">
+        <li class="nav-item" v-if="this.$store.getters.isAuthUser">
            <div  class="nav-link" @click="logoutUser()">Logout</div>
         </li>
-        <li class="nav-item" @click="loginUser(false)" v-if="!this.$store.state.auth">
+        <li class="nav-item" @click="loginUser(false)" v-if="!this.$store.getters.isAuthUser">
            <div class="nav-link" >Login</div>
         </li>
       </ul>
