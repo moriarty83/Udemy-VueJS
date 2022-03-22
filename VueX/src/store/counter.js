@@ -1,4 +1,5 @@
 const counterModule = {
+    namespaced: true,
     state(){
         return{
             counter: 7,
@@ -23,7 +24,9 @@ const counterModule = {
         },
     },
     getters:{
-        getCount(state){
+        getCount(state, getters, rootState, rootGetters){
+            console.log(rootState.admin.auth)
+            console.log(rootGetters)
           return state.counter
         },
         getPrize(state, getters){

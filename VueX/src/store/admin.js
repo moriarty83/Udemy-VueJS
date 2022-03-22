@@ -1,4 +1,5 @@
 const authModule = {
+    namespaced: true,
     state(){
         return{
             auth: true,
@@ -13,6 +14,8 @@ const authModule = {
     // Actions can be async but can't mutate the store
     actions:{
         setAuth(context){
+            console.log(context)
+            context.commit('add', null, {root:true})
             setTimeout(()=>{
                 context.commit('setAuth', {value: true})
             }, 500)

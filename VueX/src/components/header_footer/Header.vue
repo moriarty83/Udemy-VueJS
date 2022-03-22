@@ -12,10 +12,10 @@
         <li class="nav-item">
            <router-link to="/admin" class="nav-link">Admin</router-link>
         </li>
-        <li class="nav-item" v-if="this.$store.getters.isAuthUser">
+        <li class="nav-item" v-if="this.$store.getters['admin/isAuthUser']">
            <div  class="nav-link" @click="logoutUser()">Logout</div>
         </li>
-        <li class="nav-item" @click="loginUser(false)" v-if="!this.$store.getters.isAuthUser">
+        <li class="nav-item" @click="loginUser(false)" v-if="!this.$store.getters['admin/isAuthUser']">
            <div class="nav-link" >Login</div>
         </li>
       </ul>
@@ -27,7 +27,7 @@
 import {mapActions} from 'vuex'
 export default {
   methods:{
-    ...mapActions({
+    ...mapActions('admin',{
       loginUser: 'setAuth',
       logoutUser: 'signOut',
     }),

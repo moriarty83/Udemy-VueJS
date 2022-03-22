@@ -3,7 +3,7 @@
 <div class="px-4 py-5 my-5 text-center">
     <h1 class="display-5 fw-bold">Count</h1>
     <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4">{{ $store.getters.getCount}}</p>
+      <p class="lead mb-4">{{ $store.getters['counter/getCount']}}</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
 
         <button 
@@ -15,7 +15,7 @@
           class="btn btn-outline-secondary btn-lg px-4"
           @click="subtract()"
         >-</button>
-        <button class="btn btn-secondary btn-lg" @click="getPrize">Get Prize</button>
+        <button class="btn btn-secondary btn-lg" @click="$store.getters['counter/getPrize']">Get Prize</button>
 
       </div>
     </div>
@@ -28,18 +28,18 @@
 import {mapGetters, mapMutations} from 'vuex'
 export default {
   computed:{
-    ...mapGetters({
+    ...mapGetters('counter',{
       prize: 'getPrize'
     }),
     counterValue(){
-      return this.$store.state.counter
+      return this.$store.getters['counter/getCount']
     },
     // prize(){
-    //   return this.$store.getters.getPrize;
+    //   return this.$store.getters['counter/getPrize'];
     // }
   },
   methods:{
-    ...mapMutations(['add', 'subtract']),
+    ...mapMutations('counter',['add', 'subtract']),
     // add(){
     //   this.$store.state.counter += 1
     // },
