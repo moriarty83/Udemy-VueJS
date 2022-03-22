@@ -53,6 +53,7 @@ const store = createStore({
           return state.counter
         },
         getPrize(state, getters){
+            console.log("Getting prize")
             let prize = ''
             state.attempts ++
             for(let i=0; i < state.counter; i++)

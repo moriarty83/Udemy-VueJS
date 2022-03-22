@@ -19,10 +19,10 @@
         </div>
         <br/>
 
-        <button type="button" class="btn btn-primary" @click="adminAdd">
+        <button type="button" class="btn btn-primary" @click="adminAdd({value: this.amount})">
           +
         </button>
-        <button type="button" class="btn btn-outline-secondary" @click="adminSubtract">
+        <button type="button" class="btn btn-outline-secondary" @click="adminSubtract({value: this.amount})">
           -
         </button>
       </div>
@@ -31,23 +31,28 @@
 
 
 <script>
-
+import {mapMutations} from 'vuex';
 export default {
+
     data(){
       return {
         amount:1
       }
     },
     methods:{
-      adminAdd(){
-        this.$store.commit({
-          type: 'add', 
-          value:this.amount})
-      },
-      adminSubtract(){
-        this.$store.commit('subtract', {value:this.amount})
+      ...mapMutations({
+        adminAdd: 'add',
+        adminSubtract: 'subtract'
+      }),
+      // adminAdd(){
+      //   this.$store.commit({
+      //     type: 'add', 
+      //     value:this.amount})
+      // },
+      // adminSubtract(){
+      //   this.$store.commit('subtract', {value:this.amount})
 
-      },
+      // },
     },
 
 }

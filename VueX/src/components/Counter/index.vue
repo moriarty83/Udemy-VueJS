@@ -9,11 +9,11 @@
         <button 
           type="button" 
           class="btn btn-primary btn-lg px-4 gap-3"
-        @click="this.$store.commit('add')">+</button>
+        @click="add()">+</button>
         <button 
           type="button" 
           class="btn btn-outline-secondary btn-lg px-4"
-          @click="this.$store.commit('subtract')"
+          @click="subtract()"
         >-</button>
         <button class="btn btn-secondary btn-lg" @click="getPrize">Get Prize</button>
 
@@ -25,21 +25,29 @@
 
 
 <script>
+import {mapGetters, mapMutations} from 'vuex'
 export default {
   computed:{
+    ...mapGetters({
+      prize: 'getPrize'
+    }),
     counterValue(){
       return this.$store.state.counter
-    }
+    },
+    // prize(){
+    //   return this.$store.getters.getPrize;
+    // }
   },
   methods:{
-    add(){
-      this.$store.state.counter += 1
-    },
-    subtract(){
-      this.$store.state.counter -= 1
-    },
+    ...mapMutations(['add', 'subtract']),
+    // add(){
+    //   this.$store.state.counter += 1
+    // },
+    // subtract(){
+    //   this.$store.state.counter -= 1
+    // },
     getPrize(){
-      const obj = this.$store.getters.getPrize
+      const obj = this.prize;
       alert("Prize: " + obj.prize + " In: " + obj.attempts)
     },
   },
