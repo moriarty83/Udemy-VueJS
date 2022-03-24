@@ -49,12 +49,14 @@
                     console.log("sign in")
                 }
                 else{
+                    this.$store.dispatch('user/signup', this.formdata)
                     console.log("sign up")
                 }
             }
         },
         mounted(){
             console.log(this.$store.state.user.name)
+            console.log(process.env.VUE_APP_FIREBASE_KEY)
         },
     }
 </script>
